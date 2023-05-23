@@ -87,9 +87,6 @@
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light">Upload Gambar</h1>
-                    <p class="lead text-muted">Something short and leading about the collection below—its contents, the
-                        creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it
-                        entirely.</p>
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             @foreach ($errors->all() as $error)
@@ -99,19 +96,28 @@
                     @endif
                     <div class="card-body">
                         <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%"
-                                    y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                            </svg>
+                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                            preserveAspectRatio="xMidYMid slice" focusable="false">
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%"
+                                fill="#eceeef" dy=".3em">Thumbnail</text>
+                        </svg>
                     </div>
                     <form action="/upload/proses" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
+
                         <div class="form-group">
                             <input type="file" name="file">
                         </div>
-                        <input type="submit" value="Upload" class="btn btn-primary">
+                        <div class="form-group">
+                            <b>Keterangan</b>
+                            {{-- <textarea class="form-control" name="keterangan"></textarea> --}}
+                        </div>
+                        <input type="submit" value="deteksi daging" class="btn btn-primary">
+                        
+                        <button class="btn btn-primary">
+                            <span>{{$detek}}</span>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -127,18 +133,14 @@
                                 xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
                                 preserveAspectRatio="xMidYMid slice" focusable="false">
                                 <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%"
-                                    fill="#eceeef" dy=".3em">Thumbnail</text>
+                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%"
+                                    y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
                             </svg>
 
                             <div class="card-body">
                                 <p class="card-text">This is a wider card with supporting text below as a natural
                                     lead-in to additional content. This content is a little bit longer.</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>
                             </div>
@@ -158,10 +160,6 @@
                                 <p class="card-text">This is a wider card with supporting text below as a natural
                                     lead-in to additional content. This content is a little bit longer.</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
                                     <small class="text-muted">9 mins</small>
                                 </div>
                             </div>
@@ -181,10 +179,7 @@
                                 <p class="card-text">This is a wider card with supporting text below as a natural
                                     lead-in to additional content. This content is a little bit longer.</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
+
                                     <small class="text-muted">9 mins</small>
                                 </div>
                             </div>
@@ -192,6 +187,7 @@
                     </div>
 
                 </div>
+
             </div>
         </div>
 
@@ -202,9 +198,8 @@
             <p class="float-end mb-1">
                 <a href="#">Back to top</a>
             </p>
-            <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-                    href="../getting-started/introduction/">getting started guide</a>.</p>
+            <p class="mb-1">MAHASISWA POLINEMA 2023</p>
+</p>
         </div>
     </footer>
 

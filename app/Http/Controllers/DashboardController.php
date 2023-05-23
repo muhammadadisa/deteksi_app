@@ -1,13 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\PythonController;
 use Illuminate\Http\Request;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
+use App\Models\Gambar;
 
 class DashboardController extends Controller
 {
+    protected $detek;
+    public function __construct(PythonController $detek)
+    {
+        $this->detek =$detek;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $detek = $this->detek->index();
+       // dd($detek);
+        return view('dashboard', compact('detek'));
     }
 
     /**
@@ -85,9 +93,33 @@ class DashboardController extends Controller
         //
     }
 
-    public function PythonScript()
-{
+// public function upload(){
+//     $gambar = Gambar::get();
+//     return view('dashboard',['gambar' => $gambar]);
+// }
 
+public function proses_upload(Request $request){
+	$this->validate($request, [
+		'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+		// 'keterangan' => 'required',
+	]);
+ 
+	// menyimpan data file yang diupload ke variabel $file
+	$file = $request->file('file');
+ 
+	$nama_file = time()."_".$file->getClientOriginalName();
+ 
+    // isi dengan nama folder tempat kemana file diupload
+	$tujuan_upload = 'data_file';
+	$file->move($tujuan_upload,$nama_file);
+ 
+ 
+	Gambar::create([
+		'file' => $nama_file,
+		// 'keterangan' => $request->keterangan,
+	]);
+ 
+	return redirect()->back();
 }
 
 }

@@ -14,10 +14,8 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
-
+Route::post('/upload/proses', [DashboardController::class, 'proses_upload']);
+Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::get('/phyton', [DashboardController::class, 'PythonScript'])->name('PythonScript');
 
 // Route::resource('dashboard', [DashboardController::class, 'index']);
